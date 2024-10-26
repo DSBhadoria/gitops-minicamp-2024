@@ -20,6 +20,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: ./terraform
 
     steps:
     - name: Configure AWS Credentials for India region audience
@@ -39,12 +40,12 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform -chdir="./terraform" init
+      run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: terraform -chdir="./terraform" fmt -check
+      run: terraform -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform -chdir="./terraform" plan -input=false
+      run: terraform plan -input=false

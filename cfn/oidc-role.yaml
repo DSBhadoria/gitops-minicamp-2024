@@ -12,7 +12,7 @@ Resources:
       ThumbprintList:
         - 6938fd4d98bab03faadb97b34396831e3780aea1
         - 1c58a3a8518e8759bf075b76b750d4f2df264fcd
-  gitops2024Role:
+  gitopstfminicamp2024Role:
     Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
@@ -34,7 +34,7 @@ Outputs:
   RoleName:
     Description: 'The name of the IAM role for GitHub Actions'
     Value:
-      Ref: gitops2024Role
+      Ref: gitopstfminicamp2024Role
     Export:
       Name:
         Fn::Sub: '${AWS::StackName}-RoleName'

@@ -97,7 +97,7 @@ resource "aws_instance" "grafana_server" {
 }
 
 check "grafana_health_check" {
-  data "http" "terraform_io" {
+  data "http" "test" {
     url = "http://${aws_instance.grafana_server.public_ip}:3000"
     retry {
       attempts = 5

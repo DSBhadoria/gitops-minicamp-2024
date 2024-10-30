@@ -95,3 +95,17 @@ resource "aws_instance" "grafana_server" {
     Name = "grafana-server"
   }
 }
+
+check "grafana_health_check" {
+  data "http" "terraform_io" {
+    url = "http://${aws_instance.grafana_server.public_ip}:${aws_security_group.ingress.from_port}"
+    retry {
+      attempts = 5
+    }
+  }
+
+  assert {
+    condition     = data.http.test.status_code == 200
+    error_message = "Grafaca is inaccessible on port:300"
+  }
+}
